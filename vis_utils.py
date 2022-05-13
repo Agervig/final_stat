@@ -36,7 +36,10 @@ def visualize_generic(data:np.ndarray, rows:int, cols:int, fig_title:str, sub_ti
     for i in range(1, number_of_img + 1):
         ax = fig.add_subplot(rows, cols, i)
         ax.set_title(sub_titles[i-1], color="blue", fontweight="bold")
-        plt.imshow(data[i-1].reshape(img_rows, img_cols), cmap="gray")
+        if len(data[0].shape) == 1:
+            plt.imshow(data[i-1].reshape(img_rows, img_cols), cmap="gray")
+        else:
+            plt.imshow(data[i-1], cmap="gray")
         plt.tight_layout()
     if save_img == True:
         plt.savefig(img_name)
